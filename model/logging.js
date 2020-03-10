@@ -213,6 +213,10 @@ exports.Logging = BaseModel.extend({
     },
 
     _logMessage: function(data) {
+        if (!data) {
+            logger.warn('_logMessage called without any data.');
+            return;
+        }
         if (logger && logger[data.level]) {
             logger[data.level](data.message);
         }
